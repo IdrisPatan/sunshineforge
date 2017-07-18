@@ -23,23 +23,23 @@ Since you are building an API, your primary users will be the front-end team whi
 
 ### Epic #1: Spaces
 
-1. As an API consumer, I would like to make an HTTP POST to create a Space
-1. As an API consumer, I would like to make an HTTP GET request to list all Spaces
-1. As an API consumer, I would like to make an HTTP GET request to get details of a single Space
-1. As an API consumer, I would like to make an HTTP PUT request to update the details of a Space
-1. As an API consumer, I would like to make an HTTP DELETE request to delete a Space
+1. As a cloud native developer, I want to create a Space where I can deploy my Application
+1. As a cloud native developer, I want to see all of the Spaces so that I can find a specific ID or see the total number of Spaces
+1. As a cloud native developer, I want to see the details of a Space so that I can estimate future disk capacity needs
+1. As a cloud native developer, I want to edit to a Space so that I can keep it up to date and rename it as needed
+1. As a cloud native developer, I want to be able to remove a Space so it cannot be used
 
 ### Epic #2: Apps
 
-1. As an API consumer, I would like to make an HTTP POST to create an App within a given Space
-1. As an API consumer, I would like to make an HTTP GET request to list all Apps in a Space
-1. As an API consumer, I would like to make an HTTP GET request to get details of a single App
-1. As an API consumer, I would like to make an HTTP PUT request to update the details of an App
-1. As an API consumer, I would like to make an HTTP DELETE request to delete an App
-1. As an API consumer, given that I POST an App that exceeds the resource limits of the Space, I should receive a [403 Error](http://softwareengineering.stackexchange.com/questions/288376/recommended-http-status-code-for-plan-limit-exceeded-response) with a JSON body explaining which limit has been exceeded.
+1. As a cloud native developer, I want to create an App within a space so that I can deploy it
+1. As a cloud native developer, I want see all Apps within a Space to find a specific ID or see the usage within the Space
+1. As a cloud native developer, I want to see the details of a single App so I can evaluate its memory and disk usage
+1. As a cloud native developer, I want to edit an App so that I can keep its details up to date
+1. As a cloud native developer, I want to be able to remove an App from a Space in order to free up memory and disk in that Space
+1. As a cloud native developer, I should not be able to create an App in a Space if there is not enough disk space or memory available
 
 ### Epic #3: Stretch
-1. As an API consumer, I would like the server to prevent users from accessing each others Spaces and Apps using [Basic Authentication](http://websystique.com/spring-security/secure-spring-rest-api-using-basic-authentication/)
+1. As a cloud native developer, I would like to prevent users from accessing each others Spaces and Apps. Hint: [Basic Authentication](http://websystique.com/spring-security/secure-spring-rest-api-using-basic-authentication/)
 
 ## Reflection
 
