@@ -1,10 +1,8 @@
 package com.example.app;
 
 import com.example.space.SpaceModel;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 /**
  * Created by localadmin on 7/20/17.
@@ -13,13 +11,28 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "apps")
 final class AppModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long appId;
+    private String appName;
+    private Integer diskAllocation;
+    private Integer memoryAllocation;
 
-    public Long appId;
-    public String appName;
-    public Integer diskAllocation;
-    public Integer memoryAllocation;
 
+
+    @ManyToOne
+    @JoinColumn(name = "space_id")
     private SpaceModel spaceModel;
+
+    public SpaceModel getSpaceModel() {
+        return spaceModel;
+    }
+
+    public void setSpaceModel(SpaceModel spaceModel) {
+        this.spaceModel = spaceModel;
+    }
+
+
 
     public Long getAppId() {
         return appId;
@@ -55,9 +68,9 @@ final class AppModel {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "space_id")
-    public SpaceModel getSpaceModel() {
-        return spaceModel;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "space_id")
+//    public SpaceModel getSpaceModel() {
+//        return spaceModel;
+//    }
 }
