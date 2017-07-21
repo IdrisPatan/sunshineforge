@@ -26,10 +26,11 @@ final class AppController {
     }
 
     // Post
-    @PostMapping
+    @PostMapping("")
     AppModel create(@RequestBody final AppModel app, @PathVariable final Long spaceId){
         SpaceModel spaceObject = spaceRepository.findOne(spaceId);
-      //set space model to app, create method first in app model
+        app.setSpace(spaceObject);
+
         return repository.save(app);
     }
 

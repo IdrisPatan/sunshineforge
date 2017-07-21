@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
  */
 
 import com.example.space.SpaceModel;
+import com.example.space.SpaceRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class AppControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private AppRepository repository;
+    private SpaceRepository repository;
 
     @Transactional
     @Rollback
@@ -50,14 +51,20 @@ public class AppControllerTest {
         space1.setName("AliciaCorpSpace");
         space1.setDisk(15000);
         space1.setMemory(512);
+
+        repository.save(space1);
+
         Long spaceId = space1.getId();
 
-//        final AppModel app = new AppModel();
-//        app.setAppName("Health");
 
-        final MockHttpServletRequestBuilder request = post("/spaces/{spaceId}/apps", spaceId )
+
+        // pull id from space
+        // set space id in end point
+
+
+        final MockHttpServletRequestBuilder request = post("/spaces/{spaceId}/apps", spaceId)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"HealthApp\",\"memory_allocation\":\"10\",\"disk_allocation\":\"15\"}");
+                .content("{\"appName\":\"HealthApp\",\"diskAllocation\":\"15\",\"memoryAllocation\":\"10\"}");
 
 
         //exercise
@@ -65,11 +72,9 @@ public class AppControllerTest {
 
         //assert
         resultActions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("HealthApp")))
-                .andExpect(jsonPath("$.memory_allocation", is(10)))
-                .andExpect(jsonPath("$.disk_allocation", is(15)))
-                .andExpect(jsonPath("$.space_id", is(space1.getId())));
-
+                .andExpect(jsonPath("$.appName", is("HealthApp")))
+                .andExpect(jsonPath("$.diskAllocation", is(15)))
+                .andExpect(jsonPath("$.memoryAllocation", is(10)));
 
     }
 
